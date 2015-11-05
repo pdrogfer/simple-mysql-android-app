@@ -12,29 +12,20 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.security.auth.login.LoginException;
-
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.client.utils.URIBuilder;
 
 public class ListActivity extends AppCompatActivity implements View.OnClickListener{
 
     ListView listView;
     Button btn_add_user;
     Button btn_get_data;
-
-    ManagerUsers managerUsers;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +38,20 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         btn_get_data.setOnClickListener(this);
         btn_add_user.setOnClickListener(this);
 
-        managerUsers = new ManagerUsers();
-
+        ObtainData();
     }
 
     public void ObtainData() {
-        AsyncHttpClient client = new AsyncHttpClient();
-        // when using emulator:
-        // String urlString = "http://10.0.2.2/SimpleMySQLApp/get_data.php";
+        AsyncHttpClient clientObtainData = new AsyncHttpClient();
 
-        // when using real device: (run ipconfig in terminal to find IPv4)
-        String urlString = "http://192.168.1.130/SimpleMySQLApp/get_data.php";
+        // filtering by age, for instance
+        // RequestParams parameters = new RequestParams();
+        // parameters.put("edad", 65);
 
-        RequestParams parameters = new RequestParams();
-        // filtrando por edad
-        parameters.put("Edad", 65);
-
-        client.post(urlString, new AsyncHttpResponseHandler() {
+        clientObtainData.post(Utilities.URL_GET_DATA, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
+                if (statusCode == 200) { // I think success means always code 200
                     String res = null;
                     try {
                         res = new String(responseBody, "UTF-8");
@@ -74,8 +59,6 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                     PopulateListView(ParserJSON(res));
-                    Log.i("app", "Done, from server: " + res +
-                    " from ParserJSON: " + ParserJSON(res));
                 }
             }
 
