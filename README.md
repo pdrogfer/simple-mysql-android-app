@@ -10,7 +10,7 @@ Navigate the code or clone:
 ```
 git clone https://github.com/pdrogfer/simple-mysql-android-app.git simple-mysql-android-app
 ```
-Feel free to make pull request to improve code or documentation. Give me a **star** if this was helpful to you.
+Please visit [loopj](http://loopj.com/android-async-http/) for detailed information about installation and usage. Feel free to make pull request to improve this code or documentation. Don't forget to ive me a **star** if this was helpful to you!
 
 ### License
 This code is on the public domain, under the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) license.
