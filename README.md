@@ -1,4 +1,4 @@
-# simple-mysql-android-app
+# Simple MySQL Android app
 This code is a sample Android Studio project to better understand how to implement simple htttp requests.
 
 ### Description
